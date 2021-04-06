@@ -1,0 +1,21 @@
+﻿@model JewelryReal.Models.Product_type
+@{
+    ViewBag.Title = "Удаление типа изделий";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Имя типа изделий</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Type_name)
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Product_type" asp-action="Delete" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Удалить" />
+            </div>
+        </form>
+    </div>
+</div>

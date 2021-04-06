@@ -2,11 +2,7 @@
 @{
     ViewBag.Title = "Редактирование материала";
 }
-<form asp-action="edit" asp-controller="Material" asp-route-id="@Model.MaterialID">
-    <div class="form-group">
-        <label asp-for="MaterialID" class="control-label">ID материала</label>
-        <input type="text" readonly asp-for="MaterialID" class="form-control" />
-    </div>
+<form asp-action="edit" asp-controller="Material" asp-route-MaterialID="@Model.MaterialID">
     <div class="form-group">
         <label asp-for="Material_name" class="control-label">Имя материала</label>
         <input type="text" asp-for="Material_name" class="form-control" />

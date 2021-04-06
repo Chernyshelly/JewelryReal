@@ -1,0 +1,14 @@
+﻿@model JewelryReal.Models.Product_type
+@{
+    ViewBag.Title = "Редактирование типа изделий";
+}
+<form asp-action="edit" asp-controller="Product_type" asp-route-TypeID="@Model.TypeID">
+    
+    <div class="form-group">
+        <label asp-for="Type_name" class="control-label">Имя материала</label>
+        <input type="text" asp-for="Type_name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-default" />
+    </div>
+</form>

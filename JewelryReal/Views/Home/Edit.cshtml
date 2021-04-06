@@ -2,11 +2,7 @@
 @{
     ViewBag.Title = "Редактирование скидки";
 }
-<form asp-action="edit" asp-controller="home" asp-route-id="@Model.Discount_percent">
-    <div class="form-group">
-        <label asp-for="Discount_percent" class="control-label">Процент скидки</label>
-        <input type="text" readonly asp-for="Discount_percent" class="form-control" />
-    </div>
+<form asp-action="edit" asp-controller="home" asp-route-Discount_percent="@Model.Discount_percent">
     <div class="form-group">
         <label asp-for="Discount_name" class="control-label">Имя скидки</label>
         <input type="text" asp-for="Discount_name" class="form-control" />
