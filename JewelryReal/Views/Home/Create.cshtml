@@ -1,0 +1,21 @@
+﻿@model JewelryReal.Models.Discount
+@{
+    ViewBag.Title = "Добавление скидку";
+}
+<form asp-action="create" asp-controller="home">
+    <div class="form-group">
+        <label asp-for="Discount_name" class="control-label">Имя скидки</label>
+        <input type="text" asp-for="Discount_name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Discount_percent" class="control-label">Процент скидки</label>
+        <input type="number" asp-for="Discount_percent" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Min_bought_for_discount" class="control-label">Покупок для получения</label>
+        <input type="number" asp-for="Min_bought_for_discount" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>

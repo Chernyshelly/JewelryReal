@@ -1,0 +1,14 @@
+﻿@model JewelryReal.Models.Discount
+@{
+    ViewBag.Title = Model.Discount_name;
+}
+<h2>Скидка @Model.Discount_name</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Процент скидки</dt>
+        <dd>@Model.Discount_percent</dd>
+
+        <dt>Покупок, чтобы иметь эту скидку</dt>
+        <dd>@Model.Min_bought_for_discount</dd>
+    </dl>
+</div>

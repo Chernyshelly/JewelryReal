@@ -1,0 +1,20 @@
+﻿@model IEnumerable<JewelryReal.Models.Discount>
+@{
+    ViewBag.Title = "Все скидки";
+}
+<a asp-action="Create">Добавить скидку</a>
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Discount_name</td>
+            <td>
+                <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Discount_percent">Подробнее</a> |
+                <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Discount_percent">Изменить</a> |
+                <a asp-action="Delete" asp-controller="Home" asp-route-id="@item.Discount_percent">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>
+@Html.RouteLink("Все пользователи", "material")

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<JewelryReal.Models.Material>
+@{
+    ViewBag.Title = "Все материалы";
+}
+<a asp-action="Create">Добавить материал</a>
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Material_name</td>
+            <td>
+                <a asp-action="Details" asp-controller="Material" asp-route-id="@item.MaterialID">Подробнее</a> |
+                <a asp-action="Edit" asp-controller="Material" asp-route-id="@item.MaterialID">Изменить</a> |
+                <a asp-action="Delete" asp-controller="Material" asp-route-id="@item.MaterialID">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>
+<a href=".../Materials.cshtml">s</a>
