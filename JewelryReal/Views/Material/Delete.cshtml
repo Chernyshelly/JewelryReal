@@ -1,0 +1,26 @@
+﻿@model JewelryReal.Models.Material
+@{
+    ViewBag.Title = "Удаление материала";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Имя материала</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Material_name)
+        </dd>
+
+        <dt>Цена за грамм</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Price_for_gram)
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Material" asp-action="Delete" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Удалить" />
+            </div>
+        </form>
+    </div>
+</div>

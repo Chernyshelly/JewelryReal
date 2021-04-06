@@ -1,0 +1,11 @@
+﻿@model JewelryReal.Models.Material
+@{
+    ViewBag.Title = Model.Material_name;
+}
+<h2>Материал @Model.Material_name</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Цена за грамм</dt>
+        <dd>@Model.Price_for_gram</dd>
+    </dl>
+</div>

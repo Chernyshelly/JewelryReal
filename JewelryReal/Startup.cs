@@ -58,9 +58,6 @@ namespace JewelryReal
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
-                endpoints.MapControllerRoute(
-                    name: "material",
-                    pattern: "{controller=Material}/{action=Index}/{id?}");
             });
         }
     }

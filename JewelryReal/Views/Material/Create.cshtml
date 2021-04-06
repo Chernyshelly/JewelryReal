@@ -1,0 +1,17 @@
+﻿@model JewelryReal.Models.Material
+@{
+    ViewBag.Title = "Добавление материала";
+}
+<form asp-action="create" asp-controller="Material">
+    <div class="form-group">
+        <label asp-for="Material_name" class="control-label">Имя материала</label>
+        <input type="text" asp-for="Material_name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price_for_gram" class="control-label">Цена за грамм</label>
+        <input type="number" asp-for="Price_for_gram" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>
