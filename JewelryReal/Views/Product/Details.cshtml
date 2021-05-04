@@ -1,0 +1,13 @@
+﻿@model JewelryReal.Models.Client
+@{
+    ViewBag.Title = Model.Surname+" " + Model.Name;
+}
+<h2>Клиент @Model.Surname @Model.Name @Model.Patronymic</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Номер карты постоянного покупателя</dt>
+        <dd>@Model.Number_of_regular_customers_card</dd>
+        <dt>Процент скидки</dt>
+        <dd>@Model.Discount.Discount_percent</dd>
+    </dl>
+</div>

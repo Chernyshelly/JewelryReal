@@ -1,0 +1,37 @@
+﻿@model JewelryReal.Models.Client
+@{
+    ViewBag.Title = "Удаление клиента";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>Номер карты постоянного покупателя</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Number_of_regular_customers_card)
+        </dd>
+        <dt>Фамилия</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt>Имя</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>Отчество</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+        <dt>Процент скидки</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Discount.Discount_percent)
+        </dd>
+    </dl>
+
+    <div>
+        <form asp-controller="Client" asp-action="Delete" method="post">
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Удалить" />
+            </div>
+        </form>
+    </div>
+</div>
