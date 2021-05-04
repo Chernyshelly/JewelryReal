@@ -43,7 +43,7 @@ namespace JewelryReal.Controllers
             {
                 db.Clients.Add(user);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Clients");
             }
             catch (DbUpdateException e)
             {
@@ -55,7 +55,7 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client user = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
+                Client user = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
                 if (user != null)
                     return View(user);
             }
@@ -79,7 +79,7 @@ namespace JewelryReal.Controllers
                 db.Clients.Update(user);
                 Console.WriteLine($"lщl{user.Number_of_regular_customers_card} {user.Name}");
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Clients");
             }
             catch (DbUpdateException e)
             {
@@ -113,7 +113,7 @@ namespace JewelryReal.Controllers
                     {
                         db.Clients.Remove(user);
                         await db.SaveChangesAsync();
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Clients");
                     }
                     catch (DbUpdateException e)
                     {
