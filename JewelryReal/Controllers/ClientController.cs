@@ -41,6 +41,9 @@ namespace JewelryReal.Controllers
         {
             try
             {
+                Console.WriteLine($"{user.Number_of_regular_customers_card} n={user.Name} d={user.Discount.Discount_percent} {user.Discount.Discount_name}");
+                user.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == user.Discount.Discount_percent);
+                Console.WriteLine($"2{user.Number_of_regular_customers_card} n={user.Name} d={user.Discount.Discount_percent} {user.Discount.Discount_name}");
                 db.Clients.Add(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Clients");
