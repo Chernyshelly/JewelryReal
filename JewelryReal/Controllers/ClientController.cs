@@ -39,14 +39,14 @@ namespace JewelryReal.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Client user)
+        public async Task<IActionResult> Create(Client client)
         {
             try
             {
-                Console.WriteLine($"{user.Number_of_regular_customers_card} n={user.Name} d={user.Discount.Discount_percent} {user.Discount.Discount_name}");
-                user.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == user.Discount.Discount_percent);
-                Console.WriteLine($"2{user.Number_of_regular_customers_card} n={user.Name} d={user.Discount.Discount_percent} {user.Discount.Discount_name}");
-                db.Clients.Add(user);
+                Console.WriteLine($"{client.Number_of_regular_customers_card} n={client.Name} d={client.Discount.Discount_percent} {client.Discount.Discount_name}");
+                client.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == client.Discount.Discount_percent);
+                Console.WriteLine($"2{client.Number_of_regular_customers_card} n={client.Name} d={client.Discount.Discount_percent} {client.Discount.Discount_name}");
+                db.Clients.Add(client);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Clients");
             }
@@ -60,9 +60,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client user = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (user != null)
-                    return View(user);
+                Client client = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
+                if (client != null)
+                    return View(client);
             }
             return NotFound();
         }
@@ -70,24 +70,24 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client user = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (user != null)
+                Client client = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
+                if (client != null)
                 {
                     ViewBag.Discounts = new SelectList(db.Discounts, "Discount_percent", "Discount_name");
-                    return View(user);
+                    return View(client);
                 }
             }
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Client user)
+        public async Task<IActionResult> Edit(Client client)
         {
             try
             {
-                Console.WriteLine($"lщl{user.Number_of_regular_customers_card} {user.Name}");
-                user.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == user.Discount.Discount_percent);
-                Console.WriteLine($"3{user.Number_of_regular_customers_card} n={user.Name} d={user.Discount.Discount_percent} {user.Discount.Discount_name}");
-                db.Clients.Update(user);
+                Console.WriteLine($"lщl{client.Number_of_regular_customers_card} {client.Name}");
+                client.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == client.Discount.Discount_percent);
+                Console.WriteLine($"3{client.Number_of_regular_customers_card} n={client.Name} d={client.Discount.Discount_percent} {client.Discount.Discount_name}");
+                db.Clients.Update(client);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Clients");
             }
@@ -104,11 +104,10 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client user = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (user != null)
+                Client client = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
+                if (client != null)
                 {
-                    //user.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == user.Discount.Discount_percent);
-                    return View(user);
+                    return View(client);
                 }
             }
             return NotFound();
@@ -119,12 +118,12 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client user = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (user != null)
+                Client client = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
+                if (client != null)
                 {
                     try
                     {
-                        db.Clients.Remove(user);
+                        db.Clients.Remove(client);
                         await db.SaveChangesAsync();
                         return RedirectToAction("Clients");
                     }
