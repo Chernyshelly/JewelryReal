@@ -27,6 +27,10 @@ namespace JewelryReal.Controllers
         {
             return View();
         }
+        public IActionResult EditFail()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Create(Material user)
         {
@@ -60,14 +64,22 @@ namespace JewelryReal.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int materialId, Material user)
         {
-            Console.WriteLine($"lul{materialId}");
-            user.MaterialID = materialId;
-            Console.WriteLine($"lщl{user.MaterialID}");
-            db.Materials.Update(user);
-            Console.WriteLine(user.MaterialID);
-            await db.SaveChangesAsync();
-            Console.WriteLine(user.MaterialID);
-            return RedirectToAction("Materials");
+            try
+            {
+                Console.WriteLine($"lul{materialId}");
+                user.MaterialID = materialId;
+                Console.WriteLine($"lщl{user.MaterialID}");
+                db.Materials.Update(user);
+                Console.WriteLine(user.MaterialID);
+                await db.SaveChangesAsync();
+                Console.WriteLine(user.MaterialID);
+                return RedirectToAction("Materials");
+            }
+            catch(DbUpdateException e)
+            {
+                Console.WriteLine($"Its {e.GetType()} with message {e.Message}");
+                return RedirectToAction("EditFail");
+            }
         }
         [HttpGet]
         [ActionName("Delete")]

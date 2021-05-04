@@ -27,6 +27,10 @@ namespace JewelryReal.Controllers
         {
             return View();
         }
+        public IActionResult EditFail()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Create(Product_type user)
         {
@@ -57,9 +61,17 @@ namespace JewelryReal.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(Product_type user)
         {
-            db.Product_types.Update(user);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Product_types");
+            try
+            {
+                db.Product_types.Update(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Product_types");
+            }
+            catch(DbUpdateException e)
+            {
+                Console.WriteLine($"Its {e.GetType()} with message {e.Message}");
+                return RedirectToAction("EditFail");
+            }
         }
         [HttpGet]
         [ActionName("Delete")]
