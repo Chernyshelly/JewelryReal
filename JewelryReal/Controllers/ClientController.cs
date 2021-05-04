@@ -72,7 +72,10 @@ namespace JewelryReal.Controllers
             {
                 Client user = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
                 if (user != null)
+                {
+                    ViewBag.Discounts = new SelectList(db.Discounts, "Discount_percent", "Discount_name");
                     return View(user);
+                }
             }
             return NotFound();
         }
@@ -81,8 +84,10 @@ namespace JewelryReal.Controllers
         {
             try
             {
-                db.Clients.Update(user);
                 Console.WriteLine($"lщl{user.Number_of_regular_customers_card} {user.Name}");
+                user.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == user.Discount.Discount_percent);
+                Console.WriteLine($"3{user.Number_of_regular_customers_card} n={user.Name} d={user.Discount.Discount_percent} {user.Discount.Discount_name}");
+                db.Clients.Update(user);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Clients");
             }
