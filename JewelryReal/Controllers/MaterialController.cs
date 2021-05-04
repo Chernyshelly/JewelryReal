@@ -31,12 +31,24 @@ namespace JewelryReal.Controllers
         {
             return View();
         }
+        public IActionResult CreateFail()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Create(Material user)
         {
-            db.Materials.Add(user);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Materials");
+            try
+            {
+                db.Materials.Add(user);
+                await db.SaveChangesAsync();
+                return RedirectToAction("Materials");
+            }
+            catch (DbUpdateException e)
+            {
+                Console.WriteLine($"Its {e.GetType()} with message {e.Message}");
+                return RedirectToAction("CreateFail");
+            }
         }
         public async Task<IActionResult> Details(int? id)
         {
