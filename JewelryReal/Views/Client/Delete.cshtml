@@ -1,23 +1,34 @@
-﻿@model JewelryReal.Models.Material
+﻿@model JewelryReal.Models.Client
 @{
-    ViewBag.Title = "Удаление материала";
+    ViewBag.Title = "Удаление клиента";
 }
 
 <div>
     <dl class="dl-horizontal">
-        <dt>Имя материала</dt>
+        <dt>Номер карты постоянного покупателя</dt>
         <dd>
-            @Html.DisplayFor(model => model.Material_name)
+            @Html.DisplayFor(model => model.Number_of_regular_customers_card)
         </dd>
-
-        <dt>Цена за грамм</dt>
+        <dt>Фамилия</dt>
         <dd>
-            @Html.DisplayFor(model => model.Price_for_gram)
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt>Имя</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>Отчество</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+        <dt>Процент скидки</dt>
+        <dd>
+            @Html.DisplayFor(model => model.Discount.Discount_percent)
         </dd>
     </dl>
 
     <div>
-        <form asp-controller="Material" asp-action="Delete" method="post">
+        <form asp-controller="Client" asp-action="Delete" method="post">
             <div class="form-group">
                 <input type="submit" class="btn btn-default" value="Удалить" />
             </div>

@@ -104,9 +104,12 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client user = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
+                Client user = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
                 if (user != null)
+                {
+                    //user.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == user.Discount.Discount_percent);
                     return View(user);
+                }
             }
             return NotFound();
         }
