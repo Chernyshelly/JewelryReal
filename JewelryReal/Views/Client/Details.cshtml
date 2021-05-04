@@ -1,11 +1,13 @@
-﻿@model JewelryReal.Models.Material
+﻿@model JewelryReal.Models.Client
 @{
-    ViewBag.Title = Model.Material_name;
+    ViewBag.Title = Model.Surname+" " + Model.Name;
 }
-<h2>Материал @Model.Material_name</h2>
+<h2>Клиент @Model.Surname @Model.Name @Model.Patronymic</h2>
 <div>
     <dl class="dl-horizontal">
-        <dt>Цена за грамм</dt>
-        <dd>@Model.Price_for_gram</dd>
+        <dt>Номер карты постоянного покупателя</dt>
+        <dd>@Model.Number_of_regular_customers_card</dd>
+        <dt>Процент скидки</dt>
+        <dd>@Model.Discount.Discount_percent</dd>
     </dl>
 </div>
