@@ -1,0 +1,29 @@
+﻿@model JewelryReal.Models.Client
+@{
+    ViewBag.Title = "Добавление клиента";
+}
+<form asp-action="create" asp-controller="Client">
+    <div class="form-group">
+        <label asp-for="Number_of_regular_customers_card" class="control-label">Номер карты постоянного покупателя</label>
+        <input type="number" asp-for="Number_of_regular_customers_card" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">Имя клиента</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Surname" class="control-label">Фамилия клиента</label>
+        <input type="text" asp-for="Surname" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Patronymic" class="control-label">Отчество клиента</label>
+        <input type="text" asp-for="Patronymic" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Discount_percent" class="control-label">Процент скидки клиента</label>
+        <input type="number" asp-for="Discount_percent" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Отправить" class="btn btn-default" />
+    </div>
+</form>
