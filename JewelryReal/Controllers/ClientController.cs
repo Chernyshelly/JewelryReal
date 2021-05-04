@@ -17,7 +17,7 @@ namespace JewelryReal.Controllers
         }
         public async Task<IActionResult> Clients()
         {
-            var clients = db.Clients.Include(c => c.Discounts);
+            var clients = db.Clients.Include(c => c.Discount);
             return View(await clients.ToListAsync());
         }
         public IActionResult Create()

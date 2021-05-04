@@ -28,7 +28,7 @@ namespace JewelryReal.Models
         public string Patronymic { get; set; }
         public int Discount_percent { get; set; }
     
-        public virtual Discount Discounts { get; set; }
+        public virtual Discount Discount { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }
     }
