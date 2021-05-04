@@ -7,14 +7,27 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>@item.Discount_name</td>
-            <td>
-                <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Discount_percent">Подробнее</a> |
-                <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Discount_percent">Изменить</a> |
-                <a asp-action="Delete" asp-controller="Home" asp-route-id="@item.Discount_percent">Удалить</a>
-            </td>
-        </tr>
+        if (item.Discount_percent == 0)
+        {
+            <tr>
+                <td>@item.Discount_name</td>
+                <td>
+                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Discount_percent">Подробнее</a> |
+                    <a asp-action="Delete" asp-controller="Home" asp-route-id="@item.Discount_percent">Удалить</a>
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td>@item.Discount_name</td>
+                <td>
+                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Discount_percent">Подробнее</a> |
+                    <a asp-action="Edit" asp-controller="Home" asp-route-id="@item.Discount_percent">Изменить</a> |
+                    <a asp-action="Delete" asp-controller="Home" asp-route-id="@item.Discount_percent">Удалить</a>
+                </td>
+            </tr>
+        }
     }
 </table>
 <a asp-controller="Material"
