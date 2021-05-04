@@ -38,11 +38,11 @@ namespace JewelryReal.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Discount user)
+        public async Task<IActionResult> Create(Discount discount)
         {
             try
             {
-                db.Discounts.Add(user);
+                db.Discounts.Add(discount);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -56,9 +56,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Discount user = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
-                if (user != null)
-                    return View(user);
+                Discount discount = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
+                if (discount != null)
+                    return View(discount);
             }
             return NotFound();
         }
@@ -66,19 +66,19 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Discount user = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
-                if (user != null)
-                    return View(user);
+                Discount discount = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
+                if (discount != null)
+                    return View(discount);
             }
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Discount user)
+        public async Task<IActionResult> Edit(Discount discount)
         {
             try
             {
-                db.Discounts.Update(user);
-                Console.WriteLine($"lщl{user.Discount_percent} {user.Discount_name}");
+                db.Discounts.Update(discount);
+                Console.WriteLine($"lщl{discount.Discount_percent} {discount.Discount_name}");
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
@@ -95,9 +95,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Discount user = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
-                if (user != null)
-                    return View(user);
+                Discount discount = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
+                if (discount != null)
+                    return View(discount);
             }
             return NotFound();
         }
@@ -107,12 +107,12 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Discount user = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
-                if (user != null)
+                Discount discount = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
+                if (discount != null)
                 {
                     try
                     {
-                        db.Discounts.Remove(user);
+                        db.Discounts.Remove(discount);
                         await db.SaveChangesAsync();
                         return RedirectToAction("Index");
                     }

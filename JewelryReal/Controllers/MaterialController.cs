@@ -36,11 +36,11 @@ namespace JewelryReal.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Material user)
+        public async Task<IActionResult> Create(Material material)
         {
             try
             {
-                db.Materials.Add(user);
+                db.Materials.Add(material);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Materials");
             }
@@ -54,9 +54,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Material user = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
-                if (user != null)
-                    return View(user);
+                Material material = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
+                if (material != null)
+                    return View(material);
             }
             return NotFound();
         }
@@ -64,27 +64,27 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Material user = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
-                if (user != null)
+                Material material = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
+                if (material != null)
                 {
-                    Console.WriteLine($"id={id} and userId={user.MaterialID}");
-                    return View(user);
+                    Console.WriteLine($"id={id} and materialId={material.MaterialID}");
+                    return View(material);
                 }
             }
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(int materialId, Material user)
+        public async Task<IActionResult> Edit(int materialId, Material material)
         {
             try
             {
                 Console.WriteLine($"lul{materialId}");
-                user.MaterialID = materialId;
-                Console.WriteLine($"lщl{user.MaterialID}");
-                db.Materials.Update(user);
-                Console.WriteLine(user.MaterialID);
+                material.MaterialID = materialId;
+                Console.WriteLine($"lщl{material.MaterialID}");
+                db.Materials.Update(material);
+                Console.WriteLine(material.MaterialID);
                 await db.SaveChangesAsync();
-                Console.WriteLine(user.MaterialID);
+                Console.WriteLine(material.MaterialID);
                 return RedirectToAction("Materials");
             }
             catch(DbUpdateException e)
@@ -99,9 +99,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Material user = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
-                if (user != null)
-                    return View(user);
+                Material material = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
+                if (material != null)
+                    return View(material);
             }
             return NotFound();
         }
@@ -111,12 +111,12 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Material user = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
-                if (user != null)
+                Material material = await db.Materials.FirstOrDefaultAsync(p => p.MaterialID == id);
+                if (material != null)
                 {
                     try
                     {
-                        db.Materials.Remove(user);
+                        db.Materials.Remove(material);
                         await db.SaveChangesAsync();
                         return RedirectToAction("Materials");
                     }

@@ -36,11 +36,11 @@ namespace JewelryReal.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(Product_type user)
+        public async Task<IActionResult> Create(Product_type product_type)
         {
             try
             {
-                db.Product_types.Add(user);
+                db.Product_types.Add(product_type);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Product_types");
             }
@@ -54,9 +54,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Product_type user = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
-                if (user != null)
-                    return View(user);
+                Product_type product_type = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
+                if (product_type != null)
+                    return View(product_type);
             }
             return NotFound();
         }
@@ -64,18 +64,18 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Product_type user = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
-                if (user != null)
-                    return View(user);
+                Product_type product_type = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
+                if (product_type != null)
+                    return View(product_type);
             }
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Product_type user)
+        public async Task<IActionResult> Edit(Product_type product_type)
         {
             try
             {
-                db.Product_types.Update(user);
+                db.Product_types.Update(product_type);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Product_types");
             }
@@ -91,9 +91,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Product_type user = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
-                if (user != null)
-                    return View(user);
+                Product_type product_type = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
+                if (product_type != null)
+                    return View(product_type);
             }
             return NotFound();
         }
@@ -103,12 +103,12 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Product_type user = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
-                if (user != null)
+                Product_type product_type = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
+                if (product_type != null)
                 {
                     try
                     {
-                        db.Product_types.Remove(user);
+                        db.Product_types.Remove(product_type);
                         await db.SaveChangesAsync();
                         return RedirectToAction("Product_types");
                     }
