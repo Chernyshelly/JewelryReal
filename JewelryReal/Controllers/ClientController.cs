@@ -23,7 +23,7 @@ namespace JewelryReal.Controllers
         }
         public IActionResult Create()
         {
-            ViewBag.Discounts = new SelectList(db.Discounts, "Discount_percent", "Discount_percent");
+            ViewBag.Discounts = new SelectList(db.Discounts, "Discount_percent", "Discount_name");
             return View();
         }
         public IActionResult DeleteFail()
