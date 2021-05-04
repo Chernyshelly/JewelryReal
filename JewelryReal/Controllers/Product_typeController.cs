@@ -23,6 +23,10 @@ namespace JewelryReal.Controllers
         {
             return View();
         }
+        public IActionResult DeleteFail()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Create(Product_type user)
         {
@@ -78,9 +82,17 @@ namespace JewelryReal.Controllers
                 Product_type user = await db.Product_types.FirstOrDefaultAsync(p => p.TypeID == id);
                 if (user != null)
                 {
-                    db.Product_types.Remove(user);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Product_types");
+                    try
+                    {
+                        db.Product_types.Remove(user);
+                        await db.SaveChangesAsync();
+                        return RedirectToAction("Product_types");
+                    }
+                    catch (DbUpdateException e)
+                    {
+                        Console.WriteLine($"Its {e.GetType()} with message {e.Message}");
+                        return RedirectToAction("DeleteFail");
+                    }
                 }
             }
             return NotFound();

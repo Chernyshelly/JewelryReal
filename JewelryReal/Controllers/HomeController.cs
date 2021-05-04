@@ -25,6 +25,10 @@ namespace JewelryReal.Controllers
         {
             return View();
         }
+        public IActionResult DeleteFail()
+        {
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Create(Discount user)
         {
@@ -56,6 +60,7 @@ namespace JewelryReal.Controllers
         public async Task<IActionResult> Edit(Discount user)
         {
             db.Discounts.Update(user);
+            Console.WriteLine($"lщl{user.Discount_percent} {user.Discount_name}");
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }
@@ -80,9 +85,18 @@ namespace JewelryReal.Controllers
                 Discount user = await db.Discounts.FirstOrDefaultAsync(p => p.Discount_percent == id);
                 if (user != null)
                 {
-                    db.Discounts.Remove(user);
-                    await db.SaveChangesAsync();
-                    return RedirectToAction("Index");
+                    try
+                    {
+                        db.Discounts.Remove(user);
+                        await db.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                    }
+                    catch(DbUpdateException e)
+                    {
+                        Console.WriteLine($"Its {e.GetType()} with message {e.Message}");
+                        return RedirectToAction("DeleteFail");
+                    }
+                    
                 }
             }
             return NotFound();
