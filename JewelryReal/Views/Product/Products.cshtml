@@ -1,0 +1,19 @@
+﻿@model IEnumerable<JewelryReal.Models.Product>
+@{
+    ViewBag.Title = "Все изделия";
+}
+<a asp-action="Create">Добавить изделие</a>
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>
+                <a asp-action="Details" asp-controller="Product" asp-route-id="@item.ProductID">Подробнее</a> |
+                <a asp-action="Edit" asp-controller="Product" asp-route-id="@item.ProductID">Изменить</a> |
+                <a asp-action="Delete" asp-controller="Product" asp-route-id="@item.ProductID">Удалить</a>
+            </td>
+        </tr>
+    }
+</table>

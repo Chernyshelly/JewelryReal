@@ -21,5 +21,12 @@ namespace JewelryReal.Models
         {
             Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Material>()
+                    .HasMany(c => c.Products)
+                    .WithMany(s => s.Materials)
+                    .UsingEntity(j => j.ToTable("Materials_Products"));
+        }
     }
 }
