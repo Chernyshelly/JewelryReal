@@ -12,6 +12,7 @@ namespace JewelryReal.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Product
     {
@@ -27,8 +28,9 @@ namespace JewelryReal.Models
         public string Name { get; set; }
         public Nullable<double> Mass { get; set; }
         public Nullable<double> Price { get; set; }
-        //public int TypeID { get; set; }
-    
+        public int TypeID { get; set; }
+
+        [ForeignKey("TypeID")]
         public virtual Product_type Product_type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }

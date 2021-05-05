@@ -1,13 +1,22 @@
-﻿@model JewelryReal.Models.Client
+﻿@model JewelryReal.Models.Product
 @{
-    ViewBag.Title = Model.Surname+" " + Model.Name;
+    ViewBag.Title = Model.Name;
 }
-<h2>Клиент @Model.Surname @Model.Name @Model.Patronymic</h2>
+<h2>Изделие @Model.Name</h2>
 <div>
     <dl class="dl-horizontal">
-        <dt>Номер карты постоянного покупателя</dt>
-        <dd>@Model.Number_of_regular_customers_card</dd>
-        <dt>Процент скидки</dt>
-        <dd>@Model.Discount.Discount_percent</dd>
+        <dt>Название изделия</dt>
+        <dd>@Model.Name</dd>
+        <dt>Вес изделия</dt>
+        <dd>@Model.Mass</dd>
+        <dt>Цена изделия</dt>
+        <dd>@Model.Price</dd>
+        <dt>Тип изделия</dt>
+        <dd>@Model.Product_type.Type_name</dd>
+        @foreach (var item in Model.Materials)
+        {
+            <dt>Использованный материал</dt>
+            <dd>@item.Material_name</dd>
+        }
     </dl>
 </div>

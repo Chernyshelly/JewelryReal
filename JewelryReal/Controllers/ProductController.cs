@@ -18,7 +18,7 @@ namespace JewelryReal.Controllers
         }
         public async Task<IActionResult> Products()
         {
-            var products = db.Products.Include(pt => pt.Product_type).Include(m => m.Materials);
+            var products = db.Products.Include(pt => pt.Product_type)/*.Include(m => m.Materials)*/;
             return View(await products.ToListAsync());
         }
         public IActionResult Create()
@@ -60,9 +60,9 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client client = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (client != null)
-                    return View(client);
+                Product product = await db.Products.Include(pt => pt.Product_type).Include(m => m.Materials).FirstOrDefaultAsync(p => p.ProductID == id);
+                if (product != null)
+                    return View(product);
             }
             return NotFound();
         }
