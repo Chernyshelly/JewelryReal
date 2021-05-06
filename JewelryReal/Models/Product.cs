@@ -28,7 +28,7 @@ namespace JewelryReal.Models
         public string Name { get; set; }
         public Nullable<double> Mass { get; set; }
         public Nullable<double> Price { get; set; }
-        public int TypeID { get; set; }
+        //public int TypeID { get; set; }
 
         [ForeignKey("TypeID")]
         public virtual Product_type Product_type { get; set; }
