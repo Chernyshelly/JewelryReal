@@ -73,6 +73,7 @@ namespace JewelryReal.Controllers
                 Product product = await db.Products.Include(pt => pt.Product_type).Include(m => m.Materials).FirstOrDefaultAsync(p => p.ProductID == id);
                 if (product != null)
                 {
+                    Console.WriteLine($"{product.Name} price={product.Price} mass={product.Mass}");
                     ViewBag.Product_types = new SelectList(db.Product_types, "TypeID", "Type_name", product.Product_type);
                     return View(product);
                 }
@@ -90,6 +91,7 @@ namespace JewelryReal.Controllers
                 {
                     Console.WriteLine($"Material: {item.Material_name}");
                 }
+                Console.WriteLine($"22{product.Name} price={product.Price} mass={product.Mass}");
                 product.Product_type = await db.Product_types.FirstOrDefaultAsync(pt => pt.TypeID == product.Product_type.TypeID);
                 db.Products.Update(product);
                 await db.SaveChangesAsync();
@@ -108,10 +110,10 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client client = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (client != null)
+                Product product = await db.Products.Include(c => c.Product_type).FirstOrDefaultAsync(p => p.ProductID == id);
+                if (product != null)
                 {
-                    return View(client);
+                    return View(product);
                 }
             }
             return NotFound();
@@ -122,14 +124,14 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client client = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (client != null)
+                Product product = await db.Products.FirstOrDefaultAsync(p => p.ProductID == id);
+                if (product != null)
                 {
                     try
                     {
-                        db.Clients.Remove(client);
+                        db.Products.Remove(product);
                         await db.SaveChangesAsync();
-                        return RedirectToAction("Clients");
+                        return RedirectToAction("Products");
                     }
                     catch (DbUpdateException e)
                     {
