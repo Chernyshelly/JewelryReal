@@ -70,26 +70,30 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client client = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
-                if (client != null)
+                Product product = await db.Products.Include(pt => pt.Product_type).Include(m => m.Materials).FirstOrDefaultAsync(p => p.ProductID == id);
+                if (product != null)
                 {
-                    ViewBag.Discounts = new SelectList(db.Discounts, "Discount_percent", "Discount_name");
-                    return View(client);
+                    ViewBag.Product_types = new SelectList(db.Product_types, "TypeID", "Type_name", product.Product_type);
+                    return View(product);
                 }
             }
             return NotFound();
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(Client client)
+        public async Task<IActionResult> Edit(Product product)
         {
             try
             {
-                Console.WriteLine($"lщl{client.Number_of_regular_customers_card} {client.Name}");
-                client.Discount = await db.Discounts.FirstOrDefaultAsync(dd => dd.Discount_percent == client.Discount.Discount_percent);
-                Console.WriteLine($"3{client.Number_of_regular_customers_card} n={client.Name} d={client.Discount.Discount_percent} {client.Discount.Discount_name}");
-                db.Clients.Update(client);
+                Console.WriteLine($"lщl{product.ProductID} {product.Name}");
+                Console.WriteLine($"3{product.ProductID} n={product.Name}");
+                foreach(var item in product.Materials)
+                {
+                    Console.WriteLine($"Material: {item.Material_name}");
+                }
+                product.Product_type = await db.Product_types.FirstOrDefaultAsync(pt => pt.TypeID == product.Product_type.TypeID);
+                db.Products.Update(product);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Clients");
+                return RedirectToAction("Products");
             }
             catch (DbUpdateException e)
             {

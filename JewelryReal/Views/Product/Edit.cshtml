@@ -1,23 +1,23 @@
-﻿@model JewelryReal.Models.Client
+﻿@model JewelryReal.Models.Product
 @{
-    ViewBag.Title = "Редактирование клиента";
+    ViewBag.Title = "Редактирование изделия";
 }
-<form asp-action="edit" asp-controller="Client" asp-route-Number_of_regular_customers_card="@Model.Number_of_regular_customers_card">
+<form asp-action="edit" asp-controller="Product" asp-route-ProductID="@Model.ProductID">
     <div class="form-group">
-        <label asp-for="Name" class="control-label">Имя клиента</label>
+        <label asp-for="Name" class="control-label">Название изделия</label>
         <input type="text" asp-for="Name" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Surname" class="control-label">Фамилия клиента</label>
-        <input type="text" asp-for="Surname" class="form-control" />
+        <label asp-for="Mass" class="control-label">Вес изделия</label>
+        <input type="number" asp-for="Mass" step="0.01" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Patronymic" class="control-label">Отчество клиента</label>
-        <input type="text" asp-for="Patronymic" class="form-control" />
+        <label asp-for="Price" class="control-label">Цена изделия</label>
+        <input type="number" asp-for="Price" step="0.01" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="Discount.Discount_percent" class="control-label">Скидка клиента</label>
-        <select asp-for="Discount.Discount_percent" asp-items="ViewBag.Discounts" class="form-control"></select>
+        <label asp-for="Product_type.TypeID" class="control-label">Тип изделия</label>
+        <select asp-for="Product_type.TypeID" asp-items="ViewBag.Product_types" class="form-control"></select>
     </div>
     <div class="form-group">
         <input type="submit" value="Сохранить" class="btn btn-default" />
