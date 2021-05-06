@@ -70,10 +70,10 @@ namespace JewelryReal.Controllers
         {
             if (id != null)
             {
-                Client client = await db.Clients.FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
+                Client client = await db.Clients.Include(c => c.Discount).FirstOrDefaultAsync(p => p.Number_of_regular_customers_card == id);
                 if (client != null)
                 {
-                    ViewBag.Discounts = new SelectList(db.Discounts, "Discount_percent", "Discount_name");
+                    ViewBag.Discounts = new SelectList(db.Discounts, "Discount_percent", "Discount_name", client.Discount);
                     return View(client);
                 }
             }
