@@ -20,7 +20,7 @@ namespace JewelryReal.Models
         public Product()
         {
             this.Sales = new HashSet<Sale>();
-            this.Materials = new HashSet<Material>();
+            this.Materials = new List<Material>();
         }
 
         [Key]
@@ -35,6 +35,6 @@ namespace JewelryReal.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Sale> Sales { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Material> Materials { get; set; }
+        public virtual List<Material> Materials { get; set; }
     }
 }

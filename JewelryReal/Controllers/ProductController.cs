@@ -75,6 +75,7 @@ namespace JewelryReal.Controllers
                 {
                     Console.WriteLine($"{product.Name} price={product.Price} mass={product.Mass}");
                     ViewBag.Product_types = new SelectList(db.Product_types, "TypeID", "Type_name", product.Product_type);
+                    ViewBag.Materials = new SelectList(db.Materials, "MaterialID", "Material_name");
                     return View(product);
                 }
             }
