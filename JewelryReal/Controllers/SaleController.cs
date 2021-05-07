@@ -23,7 +23,12 @@ namespace JewelryReal.Controllers
         }
         public IActionResult Create()
         {
-            ViewBag.Clients = new SelectList(db.Clients, "Number_of_regular_customers_card", "Name");
+            var clients = db.Clients.Select(s => new
+            {
+                Number_of_regular_customers_card = s.Number_of_regular_customers_card,
+                Description = string.Format("Client #{0}: {1} {2} {3}", s.Number_of_regular_customers_card, s.Surname, s.Name, s.Patronymic)
+            }).ToList();
+            ViewBag.Clients = new SelectList(clients, "Number_of_regular_customers_card", "Description");
             ViewBag.Products = new SelectList(db.Products, "ProductID", "Name");
             return View();
         }
@@ -76,7 +81,12 @@ namespace JewelryReal.Controllers
                 if (sale != null)
                 {
                     Console.WriteLine($"lщl{sale.SaleID} {sale.Product.Name} {sale.Client.Name}");
-                    ViewBag.Clients = new SelectList(db.Clients, "Number_of_regular_customers_card", "Name", sale.Client);
+                    var clients = db.Clients.Select(s => new
+                    {
+                        Number_of_regular_customers_card = s.Number_of_regular_customers_card,
+                        Description = string.Format("Client #{0}: {1} {2} {3}", s.Number_of_regular_customers_card, s.Surname, s.Name, s.Patronymic)
+                    }).ToList();
+                    ViewBag.Clients = new SelectList(clients, "Number_of_regular_customers_card", "Description");
                     ViewBag.Products = new SelectList(db.Products, "ProductID", "Name", sale.Product);
                     return View(sale);
                 }

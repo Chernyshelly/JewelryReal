@@ -73,7 +73,7 @@ namespace JewelryReal.Controllers
                 Product product = await db.Products.Include(pt => pt.Product_type).Include(m => m.Materials).FirstOrDefaultAsync(p => p.ProductID == id);
                 if (product != null)
                 {
-                    Console.WriteLine($"{product.Name} price={product.Price} mass={product.Mass}");
+                    Console.WriteLine($"фыы{product.Name} price={product.Price} mass={product.Mass}");
                     ViewBag.Product_types = new SelectList(db.Product_types, "TypeID", "Type_name", product.Product_type);
                     ViewBag.Materials = new SelectList(db.Materials, "MaterialID", "Material_name");
                     return View(product);
@@ -94,6 +94,13 @@ namespace JewelryReal.Controllers
                 }
                 Console.WriteLine($"22{product.Name} price={product.Price} mass={product.Mass}");
                 product.Product_type = await db.Product_types.FirstOrDefaultAsync(pt => pt.TypeID == product.Product_type.TypeID);
+                for(int i = 0; i < product.Materials.Count; i++)
+                {
+                    var matId = product.Materials[i].MaterialID;
+                    //product.Materials.Remove(product.Materials[i]);
+                    product.Materials[i] = await db.Materials.FirstOrDefaultAsync(m => m.MaterialID == matId);
+                    Console.WriteLine($"Material {i}: {product.Materials[i].Material_name}");
+                }
                 db.Products.Update(product);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Products");
