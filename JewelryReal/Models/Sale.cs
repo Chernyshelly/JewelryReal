@@ -12,6 +12,7 @@ namespace JewelryReal.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class Sale
     {
@@ -21,8 +22,10 @@ namespace JewelryReal.Models
         public double Sale_price { get; set; }
         [Key]
         public int SaleID { get; set; }
-    
-        public virtual Client Clients { get; set; }
-        public virtual Product Products { get; set; }
+
+        [ForeignKey("Number_of_regular_customers_card")]
+        public virtual Client Client { get; set; }
+        [ForeignKey("ProductID")]
+        public virtual Product Product { get; set; }
     }
 }

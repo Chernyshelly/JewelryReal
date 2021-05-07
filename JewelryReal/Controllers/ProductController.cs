@@ -18,7 +18,7 @@ namespace JewelryReal.Controllers
         }
         public async Task<IActionResult> Products()
         {
-            var products = db.Products.Include(pt => pt.Product_type)/*.Include(m => m.Materials)*/;
+            var products = db.Products.Include(pt => pt.Product_type).Include(m => m.Materials);
             return View(await products.ToListAsync());
         }
         public IActionResult Create()

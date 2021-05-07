@@ -1,0 +1,17 @@
+﻿@model JewelryReal.Models.Sale
+@{
+    ViewBag.Title = "Сделка №" + Model.SaleID;
+}
+<h2>Сделка № @Model.SaleID на изделие @Model.Product.Name</h2>
+<div>
+    <dl class="dl-horizontal">
+        <dt>Дата сделки</dt>
+        <dd>@Model.Sale_date</dd>
+        <dt>Изделие</dt>
+        <dd>@Model.Product.Name</dd>
+        <dt>Покупатель</dt>
+        <dd>@Model.Client.Surname @Model.Client.Name @Model.Client.Patronymic</dd>
+        <dt>Сумма сделки</dt>
+        <dd>@Model.Sale_price</dd>
+    </dl>
+</div>
