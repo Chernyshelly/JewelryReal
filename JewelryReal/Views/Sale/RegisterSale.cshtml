@@ -1,0 +1,17 @@
+﻿@model JewelryReal.Models.AutoSale
+@{
+    ViewBag.Title = "Добавление сделки";
+}
+<form asp-action="RegisterSale" asp-controller="Sale">
+    <div class="form-group">
+        <label asp-for="Number_of_regular_customers_card" class="control-label">Покупатель</label>
+        <select asp-for="Number_of_regular_customers_card" asp-items="ViewBag.Clients" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <label asp-for="ProductID" class="control-label">Изделие</label>
+        <select asp-for="ProductID" asp-items="ViewBag.Products" class="form-control"></select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-default" />
+    </div>
+</form>
