@@ -98,23 +98,9 @@ namespace JewelryReal.Controllers
                 {
                     var matId = product.Materials[i].MaterialID;
                     //product.Materials.Remove(product.Materials[i]);
-                    product.Materials[i] = await db.Materials.Include(p => p.Products).FirstOrDefaultAsync(m => m.MaterialID == matId);
+                    product.Materials[i] = await db.Materials.FirstOrDefaultAsync(m => m.MaterialID == matId);
                     Console.WriteLine($"Material {i}: {product.Materials[i].Material_name}");
                 }
-                /*var mat = db.Materials.Include(p => p.Products);
-                foreach (var item in mat)
-                {
-                    Console.WriteLine($"This is {item.Material_name}");
-                    foreach (var prod in item.Products)
-                    {
-                        if ((prod.ProductID == product.ProductID) & !(product.Materials.Contains(item)))
-                        {
-                            Console.WriteLine($"I have {prod.Name}");
-                            
-                        }
-                    }
-                }*/
-                //db.Materials.UpdateRange(product.Materials);
                 db.Products.Update(product);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Products");
