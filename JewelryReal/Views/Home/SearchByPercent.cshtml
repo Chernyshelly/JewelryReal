@@ -2,14 +2,17 @@
 @{
     ViewBag.Title = "Все скидки";
 }
-<a asp-controller="Home"
-   asp-action="SearchByName">Поиск по имени</a>
-<a asp-controller="Home"
-   asp-action="SearchByPercent">Поиск по проценту скидки</a>
-<a asp-action="Create">Добавить скидку</a>
+<p>Поиск по проценту скидки</p>
+<form method="post" action="~/Home/SearchByPercent">
+    <label>От:</label><br />
+    <input type="number" name="percentMin" /><br />
+    <label>До:</label><br />
+    <input type="number" name="percentMax" /><br />
+    <input type="submit" value="Отправить" />
+</form>
 <table class="table">
 
-    @foreach (var item in Model)
+    @foreach (var item in ViewBag.FoundDiscounts)
     {
         if (item.Discount_percent == 0)
         {
@@ -34,13 +37,3 @@
         }
     }
 </table>
-<a asp-controller="Material"
-   asp-action="Materials">Materials</a>
-<a asp-controller="Product_type"
-   asp-action="Product_types">Product_types</a>
-<a asp-controller="Client"
-   asp-action="Clients">Clients</a>
-<a asp-controller="Product"
-   asp-action="Products">Products</a>
-<a asp-controller="Sale"
-   asp-action="Sales">Sales</a>

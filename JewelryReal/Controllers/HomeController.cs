@@ -37,6 +37,45 @@ namespace JewelryReal.Controllers
         {
             return View();
         }
+        public IActionResult SearchByName()
+        {
+            ViewBag.FoundDiscounts = db.Discounts;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SearchByName(string text)
+        {
+            var foundDiscounts = new List<Discount>();
+            foreach (var item in db.Discounts)
+            {
+                if(item.Discount_name.Contains(text))
+                {
+                    foundDiscounts.Add(item);
+                }
+            }
+            ViewBag.FoundDiscounts = foundDiscounts;
+            return View();
+        }
+
+        public IActionResult SearchByPercent()
+        {
+            ViewBag.FoundDiscounts = db.Discounts;
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> SearchByPercent(int percentMin, int percentMax)
+        {
+            var foundDiscounts = new List<Discount>();
+            foreach (var item in db.Discounts)
+            {
+                if (item.Discount_percent >= percentMin && item.Discount_percent <= percentMax)
+                {
+                    foundDiscounts.Add(item);
+                }
+            }
+            ViewBag.FoundDiscounts = foundDiscounts;
+            return View();
+        }
         [HttpPost]
         public async Task<IActionResult> Create(Discount discount)
         {
