@@ -1,10 +1,12 @@
 ﻿using JewelryReal.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,13 +15,36 @@ namespace JewelryReal.Controllers
     public class HomeController : Controller
     {
         private ApplicationContext db;
-        public HomeController(ApplicationContext context)
+        private readonly IWebHostEnvironment _appEnvironment;
+        public HomeController(ApplicationContext context, IWebHostEnvironment appEnvironment)
         {
             db = context;
+            _appEnvironment = appEnvironment;
         }
         public async Task<IActionResult> Index()
         {
+            //Console.WriteLine(_appEnvironment.ContentRootPath);
             return View(await db.Discounts.ToListAsync());
+        }
+        public IActionResult GetFile()
+        {
+            string path = Path.Combine(_appEnvironment.ContentRootPath, "Files/book.txt");
+            using (StreamWriter sw = new StreamWriter(path, false, System.Text.Encoding.Default))
+            {
+                sw.WriteLine("Discounts list");
+            }
+            using (StreamWriter sw = new StreamWriter(path, true, System.Text.Encoding.Default))
+            {
+                foreach (var item in db.Discounts)
+                {
+                    sw.WriteLine($"Discount {item.Discount_name}: {item.Discount_percent}% discount, {item.Min_bought_for_discount} sales to have. ");
+                }
+
+            }
+            FileStream fs = new FileStream(path, FileMode.Open);
+            string file_type = "application/txt";
+            string file_name = "Discounts.txt";
+            return File(fs, file_type, file_name);
         }
         public IActionResult Create()
         {

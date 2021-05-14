@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.Graph" Version="3.32.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Files\" />
+  </ItemGroup>
+
 </Project>

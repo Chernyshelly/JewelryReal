@@ -1,0 +1,14 @@
+Discounts list
+Discount Invisible man: 0% discount, 0 sales to have. 
+Discount First timer: 1% discount, 1 sales to have. 
+Discount Consumer: 3% discount, 2 sales to have. 
+Discount          4: 4% discount, 4 sales to have. 
+Discount Good guy: 5% discount, 5 sales to have. 
+Discount SICKs: 6% discount, 6 sales to have. 
+Discount Crow: 7% discount, 7 sales to have. 
+Discount Mon amigo: 10% discount, 12 sales to have. 
+Discount Jewelman: 12% discount, 15 sales to have. 
+Discount Jewel addict: 15% discount, 22 sales to have. 
+Discount Shop main sponsor: 17% discount, 27 sales to have. 
+Discount Living legend: 20% discount, 35 sales to have. 
+Discount Actual jewelry god: 25% discount, 50 sales to have. 
